@@ -1,7 +1,7 @@
 {
   "name": "metar-decoder",
   "version": "1.0.0",
-  "description": "Convert METARs to JavaScript objects",
+  "description": "Convert METAR weather reports to JavaScript objects",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [

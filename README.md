@@ -1,6 +1,6 @@
 # METAR Decoder
 
-Convert METARs to JavaScript objects.
+Decode METAR weather reports to JavaScript objects.
 
 ## Install
 
