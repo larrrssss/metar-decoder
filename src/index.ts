@@ -133,7 +133,9 @@ export function decode(metar: string): IDecoded | null {
   if (matchExact(/(Q|A)(\d){4}/, sections[0])) {
     const baro = sections.shift() as string;
 
-    data.qnh = baro.startsWith('A') ? inHgtoHpa(Number(`${baro.slice(1, 3)}.${baro.slice(2, 5)}`)) : Number(baro.slice(1, 5));
+    data.qnh = baro.startsWith('A') 
+      ? inHgtoHpa(Number(`${baro.slice(1, 3)}.${baro.slice(2, 5)}`)) 
+      : Number(baro.slice(1, 5));
   }
 
   // TREND
