@@ -1,0 +1,43 @@
+{
+  "name": "metar-decoder",
+  "version": "1.0.0",
+  "description": "Convert METARs to JavaScript objects",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib/**/*"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint src/ --fix",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run lint",
+    "preversion": "npm run lint",
+    "version": "git add -A src",
+    "postversion": "git push && git push --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/larrrssss/metar-decoder.git"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.29.2",
+    "@typescript-eslint/parser": "^4.29.2",
+    "eslint": "^7.32.0",
+    "typescript": "^4.3.5"
+  },
+  "keywords": [
+    "metar",
+    "weather",
+    "converter"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/larrrssss/metar-decoder/issues"
+  },
+  "homepage": "https://github.com/larrrssss/metar-decoder#readme",
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
+}
