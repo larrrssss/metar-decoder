@@ -91,6 +91,10 @@ const airport = await decoded.fetchAirport();
 }
 ```
 
+## Types
+
+This project is completely type safe. Take a look to our [typescript interfaces](/src/types.ts) if you need a detailed description of the metar decoder response.
+
 ## TODO
 
 * Runway condition
