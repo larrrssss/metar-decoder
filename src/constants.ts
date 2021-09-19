@@ -1,4 +1,8 @@
-import { ICloud } from './types';
+interface ICloud {
+  name: string,
+  code: string,
+  density: string,
+}
 
 export const clouds: ICloud[] = [
   {
