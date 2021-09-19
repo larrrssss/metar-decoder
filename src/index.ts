@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 import { clouds, rvrTrend, trends, weather } from './constants';
-import { IAirport, ICloud, IDecoded, IWind } from './types';
+import { Airport, DecodedMetar, Wind } from './types';
 import { inHgtoHpa, matchExact } from './utils';
 
-export function decode(metar: string): IDecoded | null {
-  const data = {} as IDecoded;
+export function decode(metar: string): DecodedMetar | null {
+  const data = {} as DecodedMetar;
 
   const sections = metar.split(' ');
 
@@ -48,7 +48,7 @@ export function decode(metar: string): IDecoded | null {
 
   // WIND
   const windSection = sections.shift() as string;
-  data.wind = {} as IWind;
+  data.wind = {} as Wind;
   data.wind.direction = windSection.slice(0, 3);
   data.wind.speed = Number(windSection.slice(3, 5));
 
@@ -105,7 +105,9 @@ export function decode(metar: string): IDecoded | null {
   if (/((SCT)|(BKN)|(FEW)|(OVC))(\d{3})((CB)|(TCB))?/.test(sections[0])) {
     while(clouds.map((c) => c.code).includes(sections[0].slice(0, 3))) {
       const uncodedCloud = sections.shift() as string;
-      const cloud = clouds.find((c) => c.code === uncodedCloud.slice(0, 3)) as ICloud;
+
+      const cloud = clouds.find((c) => c.code === uncodedCloud.slice(0, 3));
+      if (!cloud) continue;
   
       data.clouds.push({
         ...cloud,
@@ -146,7 +148,7 @@ export function decode(metar: string): IDecoded | null {
     };
   }  
 
-  data.fetchAirport = async (): Promise<IAirport | null> => {
+  data.fetchAirport = async (): Promise<Airport | null> => {
     if (typeof data.airport === 'object')
       return data.airport;
 
@@ -156,7 +158,7 @@ export function decode(metar: string): IDecoded | null {
       if (json.status && json.status === 404)
         return null;
       
-      data.airport = json as IAirport;
+      data.airport = json as Airport;
       return data.airport;
     } catch (e) {
       return null;

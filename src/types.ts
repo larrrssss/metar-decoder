@@ -1,4 +1,17 @@
-export interface IAirport {
+interface Cloud {
+  cumulonimbus: boolean,
+  name: string,
+  code: string,
+  density: string,
+  altitude: number,
+}
+
+export interface Weather {
+  abbreviation: string,
+  meaning: string,
+}
+
+export interface Airport {
   icao: string,
   iata: string,
   name: string,
@@ -11,7 +24,7 @@ export interface IAirport {
   tz: string,
 }
 
-export interface IWind {
+export interface Wind {
   direction: string,
   guest: number | null,
   unit: string,
@@ -22,32 +35,23 @@ export interface IWind {
   } | null,
 }
 
-export interface IRvr {
+export interface Rvr {
   runway: string,
   visibility: { min: string, max: string } | string,
   trend: string, 
 }
 
-export interface IDecoded {
-  airport: IAirport | string,
+export interface DecodedMetar {
+  airport: Airport | string,
   recorded_at: Date,
-  wind: IWind,
+  wind: Wind,
   cavok: boolean,
   auto: boolean,
   visibility: number,
   min_visibility: { visibility: number, direction: string } | undefined,
-  rvr: IRvr[],
-  clouds: {
-    cumulonimbus: boolean,
-    name: string,
-    code: string,
-    density: string,
-    altitude: number,
-  }[],
-  weather: {
-    abbreviation: string,
-    meaning: string,
-  }[],
+  rvr: Rvr[],
+  clouds: Cloud[],
+  weather: Weather[],
   dewpoint: number,
   temperature: number,
   qnh: number,
@@ -56,5 +60,5 @@ export interface IDecoded {
     full: string,
   },
   vertical_visibility: string,
-  fetchAirport: () => Promise<IAirport | null>,
+  fetchAirport: () => Promise<Airport | null>,
 }
