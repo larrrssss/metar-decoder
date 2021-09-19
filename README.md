@@ -2,7 +2,7 @@
 
 Decode METAR weather reports to JavaScript objects.
 
-## Install
+## Installation
 
 ```sh
 npm install metar-decoder
