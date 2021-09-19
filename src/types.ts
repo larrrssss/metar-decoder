@@ -1,9 +1,3 @@
-export interface ICloud {
-  name: string,
-  code: string,
-  density: string,
-}
-
 export interface IAirport {
   icao: string,
   iata: string,
