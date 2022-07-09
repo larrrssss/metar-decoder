@@ -17,8 +17,10 @@ export function decode(metar: string): DecodedMetar | null {
   data.weather = [];
   data.auto = sections[1] === 'AUTO';
   data.cavok = metar.includes('CAVOK');  
-  if (data.cavok) 
+  if (data.cavok) {
     data.visibility = 9999;
+    sections.splice(sections.indexOf('CAVOK'), 1);
+  }
 
   // WEATHER
   for (let i = sections.length - 1; i >= 0; i--) {
